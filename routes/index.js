@@ -62,10 +62,31 @@ router.get('/volunteer',isLoggedIn,async function(req,res,next){
     res.redirect('/profile');
   }
 });
-router.get('/profile',isLoggedIn,async function(req,res,next){
-  const user=await userModel.findOne({username:req.session.passport.user}).populate("posts");
-  res.render("profile",{user,nav:true});
+router.get('/profile', isLoggedIn, async function (req, res, next) {
+  try {
+    // Fetch the logged-in user's data
+    const user = await userModel.findOne({ username: req.session.passport.user }).populate("posts");
+
+    if (!user) {
+      // Handle case where user data is not found
+      return res.status(404).send("User not found");
+    }
+
+    // Redirect based on user role
+    if (user.role === 'club') {
+      return res.render('club', { user, nav: true }); // Render `club.ejs` for club users
+    } else if (user.role === 'volunteer') {
+      return res.render('volunteer', { user, nav: true }); // Render `volunteer.ejs` for volunteer users
+    } else {
+      // Default rendering for other roles (if applicable)
+      return res.render('profile', { user, nav: true });
+    }
+  } catch (err) {
+    console.error("Error fetching user profile:", err);
+    next(err); // Pass the error to the error handler
+  }
 });
+
 router.get('/show/posts',isLoggedIn,async function(req,res,next){
   const user=await userModel.findOne({username:req.session.passport.user}).populate("posts");
   res.render("show",{user,nav:true});

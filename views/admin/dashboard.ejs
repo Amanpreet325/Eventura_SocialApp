@@ -4,7 +4,169 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="/styles.css"> <!-- Include your CSS file -->
+  <style>
+    /* General reset */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: #f5f6fa;
+      color: #333;
+      height: 100%;
+    }
+
+    /* Dashboard Container */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #007bff;
+    }
+
+    nav {
+      text-align: right;
+      margin-bottom: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      background: #007bff;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    nav a:hover {
+      background: #0056b3;
+    }
+
+    .statistics {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .stat {
+      flex: 1 1 calc(25% - 1rem);
+      background: #f1f3f4;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 0.5rem;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .actions h2 {
+      margin-bottom: 1rem;
+      color: #007bff;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem;
+      margin-bottom: 0.5rem;
+      background: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .approve-btn, .reject-btn, .delete-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #fff;
+      transition: background 0.3s ease;
+    }
+
+    .approve-btn {
+      background: #28a745;
+    }
+
+    .approve-btn:hover {
+      background: #218838;
+    }
+
+    .reject-btn {
+      background: #dc3545;
+    }
+
+    .reject-btn:hover {
+      background: #c82333;
+    }
+
+    .delete-btn {
+      background: #ffc107;
+      color: #333;
+    }
+
+    .delete-btn:hover {
+      background: #e0a800;
+    }
+
+    .add-venue-btn {
+      display: block;
+      width: fit-content;
+      margin: 2rem auto;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      color: #fff;
+      background: #17a2b8;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+
+    .add-venue-btn:hover {
+      background: #138496;
+    }
+
+    @media (max-width: 768px) {
+      .statistics {
+        flex-direction: column;
+      }
+
+      .stat {
+        margin: 0.5rem 0;
+      }
+
+      li {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .approve-btn, .reject-btn, .delete-btn {
+        margin: 0.5rem 0;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="dashboard-container">
@@ -13,21 +175,18 @@
       <a href="/admin/logout">Logout</a>
     </nav>
 
+    <!-- Statistics Section -->
     <div class="statistics">
-      <div class="stat">
-        <h3>Total Users: <%= totalUsers %></h3>
-      </div>
-      <div class="stat">
-        <h3>Total Posts: <%= totalPosts %></h3>
-      </div>
-      <div class="stat">
-        <h3>Total Clubs: <%= totalClubs %></h3>
-      </div>
-      <div class="stat">
-        <h3>Total Sponsors: <%= totalSponsors %></h3>
-      </div>
+      <div class="stat">Total Users: <%= totalUsers %></div>
+      <div class="stat">Total Posts: <%= totalPosts %></div>
+      <div class="stat">Total Clubs: <%= totalClubs %></div>
+      <div class="stat">Total Sponsors: <%= totalSponsors %></div>
     </div>
 
+    <!-- Add Venue Button -->
+    <a href="/admin/add-venue" class="add-venue-btn">Add Venue</a>
+
+    <!-- Actions Section -->
     <div class="actions">
       <h2>Approve or Reject Pending Actions</h2>
 
@@ -57,7 +216,6 @@
           </li>
         <% }); %>
       </ul>
-      
 
       <!-- Clubs Section -->
       <h3>Pending Clubs</h3>
@@ -65,14 +223,13 @@
         <% clubs.forEach(club => { %>
           <li>
             <span><%= club.username %> - <%= club.bio.slice(0, 50) %>...</span>
-            <button class="approve-btn" onclick="approveUser('<%= club._id %>')">Approve</button>
-            <button class="reject-btn" onclick="rejectUser('<%= club._id %>')">Reject</button>
+            <button class="approve-btn" onclick="approveClub('<%= club._id %>')">Approve</button>
+            <button class="reject-btn" onclick="rejectClub('<%= club._id %>')">Reject</button>
           </li>
         <% }); %>
       </ul>
     </div>
   </div>
-
   <script>
     // Approve User
     function approveUser(userId) {
