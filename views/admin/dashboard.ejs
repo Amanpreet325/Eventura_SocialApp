@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- Include your CSS file -->
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <a href="/admin/logout">Logout</a>
+    </nav>
+
+    <div class="statistics">
+      <div class="stat">
+        <h3>Total Users: <%= totalUsers %></h3>
+      </div>
+      <div class="stat">
+        <h3>Total Posts: <%= totalPosts %></h3>
+      </div>
+      <div class="stat">
+        <h3>Total Clubs: <%= totalClubs %></h3>
+      </div>
+      <div class="stat">
+        <h3>Total Sponsors: <%= totalSponsors %></h3>
+      </div>
+    </div>
+
+    <div class="actions">
+      <h2>Approve or Reject Pending Actions</h2>
+
+      <!-- Users Section -->
+      <h3>Pending Users</h3>
+      <ul>
+        <% users.forEach(user => { %>
+          <li>
+            <span><%= user.name %> - <%= user.email %></span>
+            <button class="approve-btn" onclick="approveUser('<%= user._id %>')">Approve</button>
+            <button class="reject-btn" onclick="rejectUser('<%= user._id %>')">Reject</button>
+          </li>
+        <% }); %>
+      </ul>
+
+      <!-- Posts Section -->
+      <h3>Pending Posts</h3>
+      <ul>
+        <% posts.forEach(post => { %>
+          <li>
+            <span>
+              <%= post.caption %> - 
+              <%= post.content ? post.content.slice(0, 50) : 'No content available' %>...
+            </span>
+            <button class="approve-btn" onclick="approvePost('<%= post._id %>')">Approve</button>
+            <button class="delete-btn" onclick="deletePost('<%= post._id %>')">Delete</button>
+          </li>
+        <% }); %>
+      </ul>
+      
+
+      <!-- Clubs Section -->
+      <h3>Pending Clubs</h3>
+      <ul>
+        <% clubs.forEach(club => { %>
+          <li>
+            <span><%= club.username %> - <%= club.bio.slice(0, 50) %>...</span>
+            <button class="approve-btn" onclick="approveUser('<%= club._id %>')">Approve</button>
+            <button class="reject-btn" onclick="rejectUser('<%= club._id %>')">Reject</button>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Approve User
+    function approveUser(userId) {
+      fetch(`/admin/approve-user/${userId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'approved' })
+      }).then(res => res.json())
+        .then(data => alert('User Approved'))
+        .catch(err => alert('Error approving user'));
+    }
+
+    // Reject User
+    function rejectUser(userId) {
+        fetch(`/admin/delete-user/${userId}`, { method: 'DELETE' })
+        .then(res => res.json())
+        .then(data => alert('user Deleted'))
+        .catch(err => alert('Error deleting user'));}
+
+    // Approve Post
+    function approvePost(postId) {
+      fetch(`/admin/approve-post/${postId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'approved' })
+      }).then(res => res.json())
+        .then(data => alert('Post Approved'))
+        .catch(err => alert('Error approving post'));
+    }
+
+    // Delete Post
+    function deletePost(postId) {
+        console.log(`Deleting post with ID: ${postId}`);
+      fetch(`/admin/delete-post/${postId}`, { method: 'DELETE' })
+        .then(res => res.json())
+        .then(data => alert('Post Deleted'))
+        .catch(err => alert('Error deleting post'));
+    }
+
+    // Approve Club
+    function approveClub(clubId) {
+      fetch(`/admin/approve-club/${clubId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'approved' })
+      }).then(res => res.json())
+        .then(data => alert('Club Approved'))
+        .catch(err => alert('Error approving club'));
+    }
+
+    // Reject Club
+    function rejectClub(clubId) {
+      fetch(`/admin/approve-club/${clubId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'rejected' })
+      }).then(res => res.json())
+        .then(data => alert('Club Rejected'))
+        .catch(err => alert('Error rejecting club'));
+    }
+  </script>
+</body>
+</html>

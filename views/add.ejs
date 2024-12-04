@@ -1,0 +1,23 @@
+<%  include ./partials/header.ejs %>
+
+<div class="w-[100%] h-[100vh] flex justify-center items-center bg-gray-200">
+  <div class="w-[28.7vw] h-[65vh] bg-white px-5 py-5 rounded-md shadow-lg">
+    <div class="w-full  h-full bg-zinc-800 px-5 py-3 text-white rounded-md">
+      <div class="text-xl flex flex-row items-center">
+        <h1>Create A New Dope </h1> 
+        <span class="ml-2 w-[32px] h-[32px] rounded-full flex justify-center bg-red-700">
+          <i class="ri-upload-cloud-2-line"></i>
+        </span>
+      </div>
+      <div class="opacity-10 mt-3"></div>
+      <form action="/createpost" method="post" enctype="multipart/form-data" id="createpost">
+        <input class="text-black block w-full px-3 py-2 border-2 mt-2 rounded-md" type="file" name="postimage">
+        <input type="text" class=" text-black block w-full px-3 py-2 border-2 mt-2 rounded-md" placeholder="Title" name="title">
+        <textarea type="text" class=" text-black block w-full px-3 py-2 border-2 mt-2 rounded-md" name ="description" placeholder="Description"></textarea>
+        <input type="submit" class=" text-black block w-full px-3 py-2 bg-red-700 mt-2 rounded-md text-white cursor-pointer" name="CreatePost">
+      </form>
+    </div>
+  </div>
+</div>
+
+<%  include ./partials/footer.ejs %>

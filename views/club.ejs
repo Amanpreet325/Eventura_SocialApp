@@ -1,0 +1,375 @@
+<link rel="stylesheet" href="/stylesheets/club.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<body><!-- Include Remix Icon CSS in your HTML head -->
+   
+    
+
+    <div class="main-container">
+
+        <!-- HEADER -->
+        <header class="block">
+            <ul class="header-menu horizontal-list">
+                <li>
+                    <a class="header-menu-tab" href="#1"><span class="icon entypo-cog scnd-font-color"></span>Settings</a>
+                </li>
+                <li>
+                    <a class="header-menu-tab" href="#2"><span class="icon fontawesome-user scnd-font-color"></span>Events</a>
+                </li>
+                <li>
+                    <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>Approvals</a>
+                    <a class="header-menu-number" href="#4">5</a>
+                </li>
+                <li>
+                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Feed</a>
+                </li>
+            </ul>
+            <div class="profile-menu">
+                <p><%= user.username %> <a href="#26"><span class="entypo-down-open scnd-font-color"></span></a></p>
+                <div class="profile-picture small-profile-picture">
+                    <!-- Profile Image -->
+                    <img width="40px" alt="Profile Picture" src="/images/uploads/<%= user.profileImage %>">
+                    
+                    <!-- Edit Icon (Pencil) -->
+                   
+                </div>
+            </div>
+            
+        </header>
+
+        <!-- LEFT-CONTAINER -->
+        <div class="left-container container">
+            <div class="menu-box block"> <!-- MENU BOX (LEFT-CONTAINER) -->
+                <h2 class="titular">MENU BOX</h2>
+                <ul class="menu-box-menu">
+                    <li>
+                        <a class="menu-box-tab" href="#6"><span class="icon fontawesome-envelope scnd-font-color"></span>Messages<div class="menu-box-number">24</div></a>                            
+                    </li>
+                    <li>
+                        <a class="menu-box-tab" href="#8"><span class="icon entypo-paper-plane scnd-font-color"></span>Invites<div class="menu-box-number">3</div></a>                            
+                    </li>
+                    <li>
+                        <a class="menu-box-tab" href="#10"><span class="icon entypo-calendar scnd-font-color"></span>Events<div class="menu-box-number">5</div></a>                            
+                    </li>
+                    <li>
+                        <a class="menu-box-tab" href="#12"><span class="icon entypo-cog scnd-font-color"></span>Account Settings</a>
+                    </li>
+                    <li>
+                        <a class="menu-box-tab" href="#13"><sapn class="icon entypo-chart-line scnd-font-color"></sapn>Statistics</a>
+                    </li>                        
+                </ul>
+            </div>
+            <div class="donut-chart-block block"> <!-- DONUT CHART BLOCK (LEFT-CONTAINER) -->
+                <h2 class="titular">OS AUDIENCE STATS</h2>
+                <div class="donut-chart">
+                    <!-- DONUT-CHART by @kseso https://codepen.io/Kseso/pen/phiyL -->
+                    <div id="porcion1" class="recorte"><div class="quesito ios" data-rel="21"></div></div>
+                    <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="39"></div></div>
+                    <div id="porcion3" class="recorte"><div class="quesito win" data-rel="31"></div></div>
+                    <div id="porcionFin" class="recorte"><div class="quesito linux" data-rel="9"></div></div>
+                    <!-- END DONUT-CHART by @kseso https://codepen.io/Kseso/pen/phiyL -->    
+                    <p class="center-date">JAN<br><br><span class="scnd-font-color">2025</span></p> 
+                </div>
+                <ul class="os-percentages horizontal-list">
+                    <li>
+                        <p class="ios os scnd-font-color">1 Yr</p>
+                        <p class="os-percentage">52<sup>%</sup></p>
+                    </li>
+                    <li>
+                        <p class="mac os scnd-font-color">2 Yr</p>
+                        <p class="os-percentage">21<sup>%</sup></p>
+                    </li>
+                    <li>
+                        <p class="linux os scnd-font-color">3 Yr</p>
+                        <p class="os-percentage">19<sup>%</sup></p>
+                    </li>
+                    <li>
+                        <p class="win os scnd-font-color">4 Yr</p>
+                        <p class="os-percentage">8<sup>%</sup></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="line-chart-block block clear"> <!-- LINE CHART BLOCK (LEFT-CONTAINER) -->
+                <div class="line-chart">
+                  <!-- LINE-CHART by @kseso https://codepen.io/Kseso/pen/phiyL -->
+                    <div class='grafico'>
+                       <ul class='eje-y'>
+                         <li data-ejeY='30'></li>
+                         <li data-ejeY='20'></li>
+                         <li data-ejeY='10'></li>
+                         <li data-ejeY='0'></li>
+                       </ul>
+                       <ul class='eje-x'>
+                         <li>Apr</li>
+                         <li>May</li>
+                         <li>Jun</li>
+                       </ul>
+                         <span data-valor='25'>
+                           <span data-valor='8'>
+                             <span data-valor='13'>
+                               <span data-valor='5'>   
+                                 <span data-valor='23'>   
+                                 <span data-valor='12'>
+                                     <span data-valor='15'>
+                                     </span></span></span></span></span></span></span>
+                    </div>
+                    <!-- END LINE-CHART by @kseso https://codepen.io/Kseso/pen/phiyL -->
+                </div>
+                <ul class="time-lenght horizontal-list">
+                    <li><a class="time-lenght-btn" href="#14">Week</a></li>
+                    <li><a class="time-lenght-btn" href="#15">Month</a></li>
+                    <li><a class="time-lenght-btn" href="#16">Year</a></li>
+                </ul>
+                <ul class="month-data clear">
+                    <li>
+                        <p>APR<span class="scnd-font-color"> 2024</span></p>
+                        <p><span class="entypo-plus increment"> </span>21<sup>%</sup></p>
+                    </li>
+                    <li>
+                        <p>MAY<span class="scnd-font-color"> 2024</span></p>
+                        <p><span class="entypo-plus increment"> </span>48<sup>%</sup></p>
+                    </li>
+                    <li>
+                        <p>JUN<span class="scnd-font-color"> 2024</span></p>
+                        <p><span class="entypo-plus increment"> </span>35<sup>%</sup></p>
+                    </li>
+                </ul>
+            </div>
+            
+            <ul class="social horizontal-list block"> <!-- SOCIAL (LEFT-CONTAINER) -->
+                <li class="facebook"><p class="icon"><span class="zocial-facebook"></span></p><p class="number">248k</p></li>
+                <li class="twitter"><p class="icon"><span class="zocial-twitter"></span></p><p class="number">30k</p></li>
+                <li class="googleplus"><p class="icon"><span class="zocial-googleplus"></span></p><p class="number">124k</p></li>
+                <li class="mailbox"><p class="icon"><span class="fontawesome-envelope"></span></p><p class="number">89k</p></li>
+            </ul>
+        </div>
+
+        <!-- MIDDLE-CONTAINER -->
+        <div class="middle-container container">
+            <div class="profile block"> <!-- PROFILE (MIDDLE-CONTAINER) -->
+                <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a>
+                <div class="profile-picture big-profile-picture clear">
+                    <img width="150px" alt="Anne Hathaway picture" src="/images/uploads/<%= user.profileImage  %>" >
+                    <i id="uploadicon" class="text-zinc-800 ri-pencil-fill" style="cursor: pointer; font-size: 14px;"></i>
+                    
+                    <!-- File upload form (hidden by default) -->
+                    <form id="uploadform" hidden action="/fileupload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="image" id="fileInput">
+                    </form>
+                </div>
+                <h1 class="user-name"><%= user.username  %></h1>
+                <div class="profile-description">
+                    <p class="scnd-font-color"><%= user.bio  %></p>
+                </div>
+                <ul class="profile-options horizontal-list">
+                    <li>
+                        <a class="comments" href="#40">
+                          <p><span class="icon fontawesome-time scnd-font-color"></span> 3</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="views" href="#41">
+                          <p><span class="icon fontawesome-user scnd-font-color"></span> 400</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="likes" href="#42">
+                          <p><span class="icon fontawesome-calendar scnd-font-color"></span> 10</p>
+                        </a>
+                      </li>
+                      
+                </ul>
+            </div>
+            <div class="weather block clear"> <!-- EVENTS (MIDDLE-CONTAINER) -->
+                <h2 class="titular"><span class="icon entypo-calendar" style="color: white;"></span><strong>EVENTS</strong></h2> <!-- Changed icon to "event" -->
+                <div class="current-day">
+                    <p class="current-day-date">UPCOMING: ONGC Debate 03/12 <span class="icon icon-check" style="color: white;"></span></p>
+                </div>
+                <ul class="next-days">
+                    <li>
+                        <a href="#47">
+                            <p class="next-days-date"><span class="day">FRI</span> <span class="scnd-font-color">01/11</span></p>
+                            <p class="next-days-temperature">AI Workshop <span class="icon icon-check" style="color: white;"></span></p> <!-- Completed -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#48">
+                            <p class="next-days-date"><span class="day">SAT</span> <span class="scnd-font-color">02/11</span></p>
+                            <p class="next-days-temperature">Coding Hackathon <span class="icon icon-check" style="color: white;"></span></p> <!-- Completed -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#49">
+                            <p class="next-days-date"><span class="day">FRI</span> <span class="scnd-font-color">15/12</span></p>
+                            <p class="next-days-temperature">ML Seminar <span class="icon icon-clock" style="color: white;"></span></p> <!-- Upcoming -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#50">
+                            <p class="next-days-date"><span class="day">SUN</span> <span class="scnd-font-color">20/12</span></p>
+                            <p class="next-days-temperature">Robotics Meet <span class="icon icon-clock" style="color: white;"></span></p> <!-- Upcoming -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#51">
+                            <p class="next-days-date"><span class="day">MON</span> <span class="scnd-font-color">25/12</span></p>
+                            <p class="next-days-temperature">Tech Talk <span class="icon icon-clock" style="color: white;"></span></p> <!-- Upcoming -->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            
+            
+            
+
+            
+            <ul class="social block"> <!-- SOCIAL (MIDDLE-CONTAINER) -->
+                <li><a href="#50"><div class="facebook icon"><span class="zocial-facebook"></span></div><h2 class="facebook titular">SHARE TO FACEBOOK</h2></li></a>
+                <li><a href="#51"><div class="twitter icon"><span class="zocial-twitter"></span></div><h2 class="twitter titular">SHARE TO TWITTER</h2></li></a>
+                <li><a href="#52"><div class="googleplus icon"><span class="zocial-googleplus"></span></div><h2 class="googleplus titular">SHARE TO GOOGLE+</h2></li></a>
+            </ul>
+        </div>
+
+        <!-- RIGHT-CONTAINER -->
+        <div class="right-container container">
+            <div class="join-newsletter block"> <!-- JOIN NEWSLETTER (RIGHT-CONTAINER) -->
+                <h2 class="titular">JOIN THE GROUP</h2>
+                <div class="input-container">
+                    <input type="text" placeholder="yourname@gmail.com" class="email text-input">
+                    <div class="input-icon envelope-icon-newsletter"><span class="fontawesome-envelope scnd-font-color"></span></div>
+                </div>
+                <a class="subscribe button" href="#21">ADD MEMBERS</a>
+            </div>
+            <div class="account block"> <!-- ACCOUNT (RIGHT-CONTAINER) -->
+                <h2 class="titular">MEMBER DETAILS</h2>
+                <ul class="member-list">
+                    <li class="member-item">
+                        <p><span class="fontawesome-user scnd-font-color" style="color: white;"></span> John Doe</p>
+                    </li>
+                    <li class="member-item">
+                        <p><span class="fontawesome-user scnd-font-color" style="color: white;"></span> Sarah Smith</p>
+                    </li>
+                    <li class="member-item">
+                        <p><span class="fontawesome-user scnd-font-color" style="color: white;"></span> Michael Brown</p>
+                    </li>
+                    <li class="member-item">
+                        <p><span class="fontawesome-user scnd-font-color" style="color: white;"></span> Emily Davis</p>
+                    </li>
+                    <li class="member-item">
+                        <p><span class="fontawesome-user scnd-font-color" style="color: white;"></span> David Wilson</p>
+                    </li>
+                    <li class="member-item">
+                        <p><span class="fontawesome-user scnd-font-color" style="color: white;"></span> Anna Johnson</p>
+                    </li>
+                </ul>
+                <a class="add-event button" href="#all-members">VIEW ALL MEMBERS</a>
+            </div>
+            
+            
+            <div class="calendar-day block"> <!-- CALENDAR DAY (RIGHT-CONTAINER) -->
+                <div class="arrow-btn-container">
+                    <a class="arrow-btn left" href="#200"><span class="icon fontawesome-angle-left"></span></a>
+                    <h2 class="titular">UPCOMING EVENT</h2>
+                    <a class="arrow-btn right" href="#201"><span class="icon fontawesome-angle-right"></span></a>
+                </div>
+                    <p class="the-day">03/12</p>
+                    <h2 class="titular" style="margin-top: 10px;">ONGC DEBATE</h2>
+                    <a class="add-event button" href="#27">ADD EVENT</a>
+            </div>
+            <div class="calendar-month block"> <!-- CALENDAR MONTH (RIGHT-CONTAINER) -->
+                <div class="arrow-btn-container">
+                    <a class="arrow-btn left" href="#202"><span class="icon fontawesome-angle-left"></span></a>
+                    <h2 class="titular">DEC 2024</h2>
+                    <a class="arrow-btn right" href="#203"><span class="icon fontawesome-angle-right"></span></a>
+                </div>
+                <table class="calendar">
+                    <thead class="days-week">
+                        <tr>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>T</th>
+                            <th>W</th>
+                            <th>R</th>
+                            <th>F</th>
+                            <th>S</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a class="scnd-font-color" href="#100">1</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="scnd-font-color" href="#101">2</a></td>
+                            <td><a class="scnd-font-color" href="#102">3</a></td>
+                            <td><a class="scnd-font-color" href="#103">4</a></td>
+                            <td><a class="scnd-font-color" href="#104">5</a></td>
+                            <td><a class="scnd-font-color" href="#105">6</a></td>
+                            <td><a class="scnd-font-color" href="#106">7</a></td>
+                            <td><a class="scnd-font-color" href="#107">8</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="scnd-font-color" href="#108">9</a></td>
+                            <td><a class="scnd-font-color" href="#109">10</a></td>
+                            <td><a class="scnd-font-color" href="#110">11</a></td>
+                            <td><a class="scnd-font-color" href="#111">12</a></td>
+                            <td><a class="scnd-font-color" href="#112">13</a></td>
+                            <td><a class="scnd-font-color" href="#113">14</a></td>
+                            <td><a class="scnd-font-color" href="#114">15</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="scnd-font-color" href="#115">16</a></td>
+                            <td><a class="scnd-font-color" href="#116">17</a></td>
+                            <td><a class="scnd-font-color" href="#117">18</a></td>
+                            <td><a class="scnd-font-color" href="#118">19</a></td>
+                            <td><a class="scnd-font-color" href="#119">20</a></td>
+                            <td><a class="scnd-font-color" href="#120">21</a></td>
+                            <td><a class="scnd-font-color" href="#121">22</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="scnd-font-color" href="#122">23</a></td>
+                            <td><a class="scnd-font-color" href="#123">24</a></td>
+                            <td><a class="scnd-font-color" href="#124">25</a></td>
+                            <td><a class="today" href="#125">26</a></td>
+                            <td><a href="#126">27</a></td>
+                            <td><a href="#127">28</a></td>
+                            <td><a href="#128">29</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#129">30</a></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> <!-- end calendar-month block --> 
+        </div> <!-- end right-container -->
+    </div> <!-- end main-container -->
+</body>
+<script>// Get the pencil icon, file input, and upload form
+    const uploadIcon = document.getElementById('uploadicon');
+    const uploadForm = document.getElementById('uploadform');
+    const fileInput = document.getElementById('fileInput');
+    
+    // Show file input form when pencil icon is clicked
+    uploadIcon.addEventListener('click', () => {
+        fileInput.click(); // Open the file picker
+    });
+    
+    // Handle file selection
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+            // Submit the form automatically when a file is selected
+            uploadForm.submit();
+        }
+    });
+    </script>

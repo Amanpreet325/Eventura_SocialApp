@@ -1,0 +1,951 @@
+<style>
+    /* $accent-color: #355cc9;
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+    
+    .card {
+        width: 420px;
+        height: 340px;
+        margin: 1em;
+        perspective: 1500px;
+        .content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.75, 0, 0.85, 1);
+        }
+    }
+    
+    .more {
+        display: none;
+    
+        &:checked ~ .content {
+            transform: rotateY(180deg);
+        }
+    }
+    
+    .front,
+    .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+        border-radius: 6px;
+    
+        .inner {
+            height: 100%;
+            display: grid;
+            padding: 1.5em;
+            transform: translateZ(80px) scale(0.94);
+        }
+    }
+    
+    .front {
+        background-color: #fff;
+        background-size: cover;
+        background-position: center center;
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 6px;
+            backface-visibility: hidden;
+            background: linear-gradient(
+                40deg,
+                rgba(67, 138, 243, 0.7),
+                rgba(255, 242, 166, 0.7)
+            );
+        }
+        .inner {
+            grid-template-rows: 5fr 1fr 1fr 2fr 1fr;
+            justify-items: center;
+        }
+    
+        h2 {
+            grid-row: 2;
+            margin-bottom: 0.3em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #fff;
+            font-weight: 500;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        .rating {
+            grid-row: 3;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            display: flex;
+            flex-flow: row nowrap;
+            i {
+                margin: 0 1px;
+            }
+        }
+    }
+    
+    .back {
+        transform: rotateY(180deg);
+        background-color: #fff;
+        border: 2px solid rgb(240, 240, 240);
+        .inner {
+            grid-template-rows: 1fr 2fr 1fr 2fr 14fr 1fr 1fr;
+            grid-template-columns: repeat(4, auto);
+            grid-column-gap: 0.8em;
+            justify-items: center;
+        }
+    
+        .info {
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: $accent-color;
+            grid-row: 3;
+            &:not(:first-of-type):before {
+                content: '';
+                position: absolute;
+                left: -0.9em;
+                height: 18px;
+                width: 1px;
+                background-color: #ccc;
+            }
+            span {
+                font-size: 2em;
+                font-weight: 700;
+            }
+            i {
+                &:before {
+                    background: linear-gradient(40deg, $accent-color, rgb(67, 138, 243));
+    
+                    -webkit-text-fill-color: transparent;
+                    -webkit-background-clip: text;
+                }
+                font-size: 1.2em;
+            }
+            .icon {
+                margin-left: 0.3em;
+                span {
+                    display: block;
+                    margin-top: -0.25em;
+                    font-size: 0.8em;
+                    font-weight: 600;
+                    white-space: nowrap;
+                }
+            }
+        }
+    
+        .description {
+            grid-row: 5;
+            grid-column: 1/-1;
+            font-size: 0.86em;
+            border-radius: 5px;
+            font-weight: 600;
+            line-height: 1.4em;
+            overflow: auto;
+            color: $accent-color;
+            padding-right: 10px;
+        }
+    
+        .location,
+        .price {
+            font-weight: 600;
+            color: $accent-color;
+            grid-row: 1;
+            font-size: 0.86em;
+        }
+    
+        .location {
+            grid-column: 1/3;
+            justify-self: left;
+        }
+    
+        .price {
+            grid-column: 3/-1;
+            justify-self: right;
+        }
+    
+        .button {
+            grid-column: 1/-1;
+            justify-self: center;
+        }
+    }
+    
+    .button {
+        grid-row: -1;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        display: block;
+        padding: 0 1.5em;
+        height: 3em;
+        line-height: 2.9em;
+        min-width: 3em;
+        background-color: transparent;
+        border: solid 2px #fff;
+        color: #fff;
+        border-radius: 4px;
+        text-align: center;
+        left: 50%;
+        backface-visibility: hidden;
+        transition: 0.3s ease-in-out;
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    
+        &:hover {
+            background-color: #fff;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            text-shadow: none;
+            color: $accent-color;
+        }
+    
+        &.return {
+            line-height: 3em;
+            color: $accent-color;
+            border-color: $accent-color;
+            text-shadow: none;
+            &:hover {
+                background-color: $accent-color;
+                color: #fff;
+                box-shadow: none;
+            }
+        }
+    }
+    
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: lighten($accent-color, 20%);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: $accent-color;
+    }
+     */
+     @import url("https://api.fontshare.com/v2/css?f[]=archivo@100,200,300,400,500,600,700,800,900&f[]=clash-display@200,300,400,500,600,700&display=swap");
+
+:root {
+	--slide-width: min(25vw, 300px);
+	--slide-aspect: 2 / 3;
+
+	--slide-transition-duration: 800ms;
+	--slide-transition-easing: ease;
+
+	--font-archivo: "Archivo", sans-serif;
+	--font-clash-display: "Clash Display", sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	display: grid;
+	place-items: center;
+	overflow: hidden;
+
+	background: rgba(0, 0, 0, 0.787);
+}
+
+button {
+	border: none;
+	background: none;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+		border: none;
+	}
+}
+
+/* ------------------------------------------------ */
+/* -------------------- SLIDER -------------------- */
+/* ------------------------------------------------ */
+
+.slider {
+	width: calc(3 * var(--slide-width));
+	height: calc(2 * var(--slide-height));
+	display: flex;
+	align-items: center;
+}
+
+.slider--btn {
+	--size: 40px;
+
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.7;
+	transition: opacity 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+	z-index: 999;
+
+	& svg {
+		width: var(--size);
+		height: var(--size);
+		stroke: white;
+	}
+
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.slides__wrapper {
+	width: 100%;
+	height: 100%;
+
+	display: grid;
+	place-items: center;
+
+	& > * {
+		grid-area: 1 / -1;
+	}
+}
+
+.slides,
+.slides--infos {
+	width: 100%;
+	height: 100%;
+
+	pointer-events: none;
+
+	display: grid;
+	place-items: center;
+	& > * {
+		grid-area: 1 / -1;
+	}
+}
+
+/* ------------------------------------------------ */
+/* -------------------- SLIDE --------------------- */
+/* ------------------------------------------------ */
+
+.slide {
+	--slide-tx: 0px;
+	--slide-ty: 0vh;
+	--padding: 0px;
+	--offset: 0;
+
+	width: var(--slide-width);
+	height: auto;
+	aspect-ratio: var(--slide-aspect);
+	user-select: none;
+	perspective: 800px;
+
+	transform: perspective(1000px)
+		translate3d(var(--slide-tx), var(--slide-ty), var(--slide-tz, 0))
+		rotateY(var(--slide-rotY)) scale(var(--slide-scale));
+	transition: transform var(--slide-transition-duration)
+		var(--slide-transition-easing);
+}
+
+.slide[data-current] {
+	--slide-scale: 1.2;
+	--slide-tz: 0px;
+	--slide-tx: 0px;
+	--slide-rotY: 0;
+
+	pointer-events: auto;
+}
+
+.slide[data-next] {
+	--slide-tx: calc(1 * var(--slide-width) * 1.07);
+	--slide-rotY: -45deg;
+}
+
+.slide[data-previous] {
+	--slide-tx: calc(-1 * var(--slide-width) * 1.07);
+	--slide-rotY: 45deg;
+}
+
+.slide:not([data-current]) {
+	--slide-scale: 1;
+	--slide-tz: 0;
+	/* --slide-tx: calc(var(--offset) * var(--slide-width) * 1.05); */
+	/* --slide-rotY: calc(var(--dir) * -45deg); */
+
+	pointer-events: none;
+}
+
+.slide[data-current] {
+	& .slide--image {
+		filter: brightness(0.8);
+	}
+}
+
+.slide:not([data-current]) {
+	& .slide--image {
+		filter: brightness(0.5);
+	}
+}
+
+.slide__inner {
+	--rotX: 0;
+	--rotY: 0;
+	--bgPosX: 0%;
+	--bgPosY: 0%;
+
+	position: relative;
+	left: calc(var(--padding) / 2);
+	top: calc(var(--padding) / 2);
+	width: calc(100% - var(--padding));
+	height: calc(100% - var(--padding));
+	transform-style: preserve-3d;
+	transform: rotateX(var(--rotX)) rotateY(var(--rotY));
+}
+
+.slide--image__wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.slide--image {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	object-fit: cover;
+	transform: translate(-50%, -50%) scale(1.25)
+		translate3d(var(--bgPosX), var(--bgPosY), 0);
+	transition: filter var(--slide-transition-duration)
+		var(--slide-transition-easing);
+}
+
+.slide__bg {
+	position: fixed;
+	inset: -20%;
+	background-image: var(--bg);
+	background-size: cover;
+	background-position: center center;
+
+	z-index: -1;
+	pointer-events: none;
+
+	transition: opacity var(--slide-transition-duration) ease,
+		transform var(--slide-transition-duration) ease;
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+	}
+
+	&::before {
+		background: rgba(0, 0, 0, 0.8);
+		backdrop-filter: blur(8px);
+	}
+
+	&:not([data-current]) {
+		opacity: 0;
+	}
+
+	&[data-previous] {
+		transform: translateX(-10%);
+	}
+
+	&[data-next] {
+		transform: translateX(10%);
+	}
+}
+
+/* ------------ SLIDE INFO ---------------- */
+
+.slide-info {
+	--padding: 0px;
+
+	position: relative;
+	width: var(--slide-width);
+	height: 100%;
+	aspect-ratio: var(--slide-aspect);
+	user-select: none;
+	perspective: 800px;
+	z-index: 100;
+}
+
+.slide-info[data-current] {
+	& .slide-info--text span {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+		transition-delay: 250ms;
+	}
+}
+
+.slide-info:not([data-current]) {
+	& .slide-info--text span {
+		opacity: 0;
+		transform: translate3d(0, 100%, 0);
+		transition-delay: 0ms;
+	}
+}
+
+.slide-info__inner {
+	position: relative;
+	left: calc(var(--padding) / 2);
+	top: calc(var(--padding) / 2);
+	width: calc(100% - var(--padding));
+	height: calc(100% - var(--padding));
+	transform-style: preserve-3d;
+	transform: rotateX(var(--rotX)) rotateY(var(--rotY));
+}
+
+.slide-info--text__wrapper {
+	--z-offset: 45px;
+
+	position: absolute;
+	height: fit-content;
+	left: -15%;
+	bottom: 15%;
+	transform: translateZ(var(--z-offset));
+	z-index: 2;
+	pointer-events: none;
+}
+
+.slide-info--text {
+	font-family: var(--font-clash-display);
+	color: #fff;
+	overflow: hidden;
+
+	& span {
+		display: block;
+		white-space: nowrap;
+		transition: var(--slide-transition-duration) var(--slide-transition-easing);
+		transition-property: opacity, transform;
+	}
+
+	&[data-title],
+	&[data-subtitle] {
+		font-size: min(3cqw, 2.4rem);
+		font-weight: 800;
+		letter-spacing: 0.2cqw;
+		white-space: nowrap;
+		text-transform: uppercase;
+	}
+
+	&[data-subtitle] {
+		margin-left: 2cqw;
+		font-size: min(2.2cqw, 1.8rem);
+		font-weight: 600;
+	}
+
+	&[data-description] {
+		margin-left: 1cqw;
+		font-size: min(1.5cqw, 0.95rem);
+		font-family: var(--font-archivo);
+		font-weight: 300;
+	}
+}
+
+/* ------------------------------------------------ */
+/* -------------------- LOADER --------------------- */
+/* ------------------------------------------------ */
+
+.loader {
+	position: fixed;
+	inset: 0;
+
+	display: grid;
+	place-items: center;
+
+	background: #000;
+	z-index: 1000;
+
+	opacity: 1;
+	transition: opacity 0.5s ease-out;
+
+	.loader__text {
+		font-family: var(--font-clash-display);
+		font-size: clamp(2rem, 2vw, 5rem);
+		font-weight: 800;
+		color: #fff;
+	}
+}
+
+/* ------------------------------------------- */
+
+.support {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	padding: 10px;
+	display: flex;
+	a {
+		margin: 0 10px;
+		color: #fff;
+		font-size: 1.8rem;
+		backface-visibility: hidden;
+		transition: all 150ms ease;
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+}
+/* Button Style */
+.book-venue-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  border-radius: 5px;
+  z-index: 99999;
+}
+
+.book-venue-btn:hover {
+  background-color: #45a049;
+}
+
+/* Modal Style */
+.booking-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 99999999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.close-modal {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form input, form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+    </style>
+    <!-- <div class="wrapper">
+        <% venues.forEach(venue => { %>
+          <div class="card">
+            <input type="checkbox" id="card<%= venue._id %>" class="more" aria-hidden="true">
+            <div class="content">
+              <div class="front" style="background-image: url('<%= venue.imageUrl %>')">
+                <div class="inner">
+                  <h2><%= venue.name %></h2>
+                  <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> <%= venue.location %>
+                  </div>
+                  <div class="capacity">
+                    <i class="fas fa-users"></i> Capacity: <%= venue.capacity %>
+                  </div>
+                  <label for="card<%= venue._id %>" class="button" aria-hidden="true">Details</label>
+                </div>
+              </div>
+              <div class="back">
+                <div class="inner">
+                  <div class="description">
+                    <p><%= venue.description %></p>
+                  </div>
+                  <form action="/book-venue" method="POST">
+                    <input type="hidden" name="venueId" value="<%= venue._id %>" />
+                    <input type="date" name="date" required />
+                    <textarea name="details" placeholder="Event Details" required></textarea>
+                    <button type="submit">Book Venue</button>
+                  </form>
+                  <label for="card<%= venue._id %>" class="button return" aria-hidden="true">
+                    <i class="fas fa-arrow-left"></i>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div> -->
+      <!-- <script>
+        
+    document.addEventListener("DOMContentLoaded", function () {
+    const bookButtons = document.querySelectorAll(".book-venue-btn");
+    const modals = document.querySelectorAll(".booking-modal");
+    const closeButtons = document.querySelectorAll(".close-modal");
+    const bookingForms = document.querySelectorAll(".booking-form");
+    
+    // Open the booking modal when the "Book Venue" button is clicked
+    bookButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const index = this.getAttribute("data-index");
+        const modal = document.getElementById(`booking-modal-${index}`);
+        modal.style.display = "block"; // Show the modal
+      });
+    });
+
+    // Close the booking modal when the close button is clicked
+    closeButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const index = this.getAttribute("data-index");
+        const modal = document.getElementById(`booking-modal-${index}`);
+        modal.style.display = "none"; // Hide the modal
+      });
+    });
+
+    // Handle form submission (you can add your form processing logic here)
+    bookingForms.forEach((form) => {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const index = this.getAttribute("data-index");
+
+        const name = this.querySelector('input[name="name"]').value;
+        const email = this.querySelector('input[name="email"]').value;
+        const date = this.querySelector('input[name="date"]').value;
+
+        alert(`Booking confirmed for ${name} at ${venues[index].name} on ${date}. Confirmation sent to ${email}`);
+
+        // Close the modal after booking
+        const modal = document.getElementById(`booking-modal-${index}`);
+        modal.style.display = "none";
+      });
+    });
+  });
+      </script> -->
+      <div class="slider">
+        <button class="slider--btn slider--btn__prev">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
+      
+        <div class="slides__wrapper">
+            <div class="slides">
+              <% venues.forEach((venue, index) => { %>
+                <!-- Slide -->
+                <div class="slide" data-<%= index === 0 ? 'current' : (index === 1 ? 'next' : 'previous') %>">
+                   
+                  <div class="slide__inner">
+                    <button class="book-venue-btn" data-index="<%= index %>" onclick="alert('Button clicked!');">Book Venue</button>
+                    <div class="booking-modal" id="booking-modal-<%= index %>">
+                        <div class="modal-content">
+                          <span class="close-modal" data-index="<%= index %>">&times;</span>
+                          <h3>Book <%= venue.name %></h3>
+                          <form action="/book-venue" method="POST">
+                              <input type="hidden" name="venueId" value="<%= venue._id %>" />
+                              <input type="date" name="date" required />
+                              <textarea name="details" placeholder="Event Details" required></textarea>
+                              <button type="submit">Book Venue</button>
+                            </form>
+                        </div>
+                      </div>
+                    <div class="slide--image__wrapper">
+                      <img class="slide--image" src="<%= venue.imageUrl %>" alt="<%= venue.name %>" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="slide__bg" style="--bg: url(<%= venue.imageUrl %>); --dir: <%= index === 0 ? '0' : (index === 1 ? '1' : '-1') %>" data-<%= index === 0 ? 'current' : (index === 1 ? 'next' : 'previous') %>></div>
+          
+                <!-- Book Venue Button -->
+              
+          
+                <!-- Booking Form Modal -->
+              
+          
+              <% }); %>
+            </div>
+          
+            <div class="slides--infos">
+              <% venues.forEach((venue, index) => { %>
+                <!-- Slide Info -->
+                <div class="slide-info" data-<%= index === 0 ? 'current' : (index === 1 ? 'next' : 'previous') %> >
+                  <div class="slide-info__inner">
+                    <div class="slide-info--text__wrapper">
+                      <div data-title class="slide-info--text">
+                        <span><%= venue.name %></span>
+                      </div>
+                      <div data-subtitle class="slide-info--text">
+                        <span><%= venue.location %></span>
+                      </div>
+                      <div data-description class="slide-info--text">
+                        <span><%= venue.description || 'No description available' %></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+          
+      
+        <button class="slider--btn slider--btn__next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+      
+      
+      
+      <script>
+      document.addEventListener("DOMContentLoaded", function () {
+  // Slider functionality
+  const slides = document.querySelectorAll(".slide");
+  const slideBgs = document.querySelectorAll(".slide__bg");
+  const slideInfos = document.querySelectorAll(".slide-info");
+  const nextBtn = document.querySelector(".slider--btn__next");
+  const prevBtn = document.querySelector(".slider--btn__prev");
+
+  let currentSlide = 0;
+
+  function updateSlides(index) {
+    slides.forEach((slide, idx) => {
+      slide.removeAttribute("data-current");
+      slide.removeAttribute("data-next");
+      slide.removeAttribute("data-previous");
+      slideBgs[idx].removeAttribute("data-current");
+      slideBgs[idx].removeAttribute("data-next");
+      slideBgs[idx].removeAttribute("data-previous");
+      slideInfos[idx].removeAttribute("data-current");
+      slideInfos[idx].removeAttribute("data-next");
+      slideInfos[idx].removeAttribute("data-previous");
+
+      if (idx === index) {
+        slide.setAttribute("data-current", true);
+        slideBgs[idx].setAttribute("data-current", true);
+        slideInfos[idx].setAttribute("data-current", true);
+      } else if (idx === (index + 1) % slides.length) {
+        slide.setAttribute("data-next", true);
+        slideBgs[idx].setAttribute("data-next", true);
+        slideInfos[idx].setAttribute("data-next", true);
+      } else if (idx === (index - 1 + slides.length) % slides.length) {
+        slide.setAttribute("data-previous", true);
+        slideBgs[idx].setAttribute("data-previous", true);
+        slideInfos[idx].setAttribute("data-previous", true);
+      }
+    });
+  }
+
+  nextBtn.addEventListener("click", () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateSlides(currentSlide);
+  });
+
+  prevBtn.addEventListener("click", () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateSlides(currentSlide);
+  });
+
+  // Initialize the slider
+  updateSlides(currentSlide);
+
+  // Booking modal functionality
+  const bookButtons = document.querySelectorAll(".book-venue-btn");
+  const modals = document.querySelectorAll(".booking-modal");
+  const closeButtons = document.querySelectorAll(".close-modal");
+  const bookingForms = document.querySelectorAll(".booking-form");
+
+  // Open the booking modal when the "Book Venue" button is clicked
+  bookButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const index = this.getAttribute("data-index");
+      const modal = document.getElementById(`booking-modal-${index}`);
+      modal.style.display = "block"; // Show the modal
+    });
+  });
+
+  // Close the booking modal when the close button is clicked
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const index = this.getAttribute("data-index");
+      const modal = document.getElementById(`booking-modal-${index}`);
+      modal.style.display = "none"; // Hide the modal
+    });
+  });
+
+  // Handle form submission
+  bookingForms.forEach((form) => {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const index = this.getAttribute("data-index");
+
+      const name = this.querySelector('input[name="name"]').value;
+      const email = this.querySelector('input[name="email"]').value;
+      const date = this.querySelector('input[name="date"]').value;
+
+      alert(`Booking confirmed for ${name} at ${venues[index].name} on ${date}. Confirmation sent to ${email}`);
+
+      // Close the modal after booking
+      const modal = document.getElementById(`booking-modal-${index}`);
+      modal.style.display = "none";
+    });
+  });
+});
+
+ 
+      </script>
+      
+      

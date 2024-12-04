@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Venue</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Add a New Venue</h1>
+  <form action="/admin/add-venue" method="POST" enctype="multipart/form-data">
+    <label for="name">Venue Name:</label>
+    <input type="text" name="name" id="name" required />
+
+    <label for="location">Location:</label>
+    <input type="text" name="location" id="location" required />
+
+    <label for="capacity">Capacity:</label>
+    <input type="number" name="capacity" id="capacity" required />
+
+    <label for="description">Description:</label>
+    <textarea name="description" id="description" required></textarea>
+
+    <label for="image">Upload Venue Image:</label>
+    <input type="file" name="image" id="image" accept="image/*" required />
+
+    <button type="submit">Add Venue</button>
+  </form>
+</body>
+</html>
