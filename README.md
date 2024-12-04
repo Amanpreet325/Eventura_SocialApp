@@ -7,6 +7,7 @@
 ## **Project Overview**
 
 This project is a full-stack **Role-Based Access Control (RBAC)** application designed for managing users, roles, permissions, posts, and event venues. The system provides an interactive platform where users can log in with different roles (e.g., Club, Volunteer, Super Admin) and interact with features according to their permissions. The admin dashboard ensures secure and efficient management of users, roles, and venue bookings while offering tailored UI dashboards for each user type.
+![ss10](https://github.com/user-attachments/assets/ccc4cb12-2477-43e0-91b6-2e73ad28b57f)
 
 ---
 
