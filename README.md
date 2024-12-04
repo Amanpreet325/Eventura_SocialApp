@@ -166,18 +166,7 @@ Each of these credentials gives access to a unique dashboard tailored to the res
 
 ---
 
-## **Evaluation Criteria**
 
-1. **Creativity and Design:**
-   - A clean, modern, and role-specific dashboard UI.
-2. **Functionality:**
-   - Implementing approval workflows, dynamic permissions, and venue bookings.
-3. **User Experience (UX):**
-   - Intuitive and accessible UI interactions.
-4. **Documentation:**
-   - A detailed and structured README file.
-5. **Security:**
-   - Secure login, role-based access, and input validations.
 
 ---
 
