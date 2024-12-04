@@ -1,5 +1,67 @@
 <link rel="stylesheet" href="/stylesheets/club.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+    /* Style for the modal background */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Modal content box */
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 30%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Close button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+
+    /* Styling form elements */
+    .modal-content input,
+    .modal-content select {
+    color: white;
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .modal-content .submit-button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .modal-content .submit-button:hover {
+      background-color: #d32f2f;
+    }
+  </style>
 <body><!-- Include Remix Icon CSS in your HTML head -->
    
     
@@ -10,17 +72,17 @@
         <header class="block">
             <ul class="header-menu horizontal-list">
                 <li>
-                    <a class="header-menu-tab" href="#1"><span class="icon entypo-cog scnd-font-color"></span>Settings</a>
+                    <a class="header-menu-tab" href="/places"><span class="icon entypo-cog scnd-font-color"></span>Book Venue</a>
                 </li>
                 <li>
-                    <a class="header-menu-tab" href="#2"><span class="icon fontawesome-user scnd-font-color"></span>Events</a>
+                    <a class="header-menu-tab" href="/show"><span class="icon fontawesome-user scnd-font-color"></span>Events</a>
                 </li>
                 <li>
-                    <a class="header-menu-tab" href="#3"><span class="icon fontawesome-envelope scnd-font-color"></span>Approvals</a>
+                    <a class="header-menu-tab" href="/admin/login"><span class="icon fontawesome-envelope scnd-font-color"></span>Approvals</a>
                     <a class="header-menu-number" href="#4">5</a>
                 </li>
                 <li>
-                    <a class="header-menu-tab" href="#5"><span class="icon fontawesome-star-empty scnd-font-color"></span>Feed</a>
+                    <a class="header-menu-tab" href="/feed"><span class="icon fontawesome-star-empty scnd-font-color"></span>Feed</a>
                 </li>
             </ul>
             <div class="profile-menu">
@@ -42,13 +104,13 @@
                 <h2 class="titular">MENU BOX</h2>
                 <ul class="menu-box-menu">
                     <li>
-                        <a class="menu-box-tab" href="#6"><span class="icon fontawesome-envelope scnd-font-color"></span>Messages<div class="menu-box-number">24</div></a>                            
+                        <a class="menu-box-tab" href="/feed"><span class="icon fontawesome-envelope scnd-font-color"></span>Feed<div class="menu-box-number">24</div></a>                            
                     </li>
                     <li>
-                        <a class="menu-box-tab" href="#8"><span class="icon entypo-paper-plane scnd-font-color"></span>Invites<div class="menu-box-number">3</div></a>                            
+                        <a class="menu-box-tab" href="/places"><span class="icon entypo-paper-plane scnd-font-color"></span>Book Venues<div class="menu-box-number">3</div></a>                            
                     </li>
                     <li>
-                        <a class="menu-box-tab" href="#10"><span class="icon entypo-calendar scnd-font-color"></span>Events<div class="menu-box-number">5</div></a>                            
+                        <a class="menu-box-tab" href="/add"><span class="icon entypo-calendar scnd-font-color"></span>Events<div class="menu-box-number">5</div></a>                            
                     </li>
                     <li>
                         <a class="menu-box-tab" href="#12"><span class="icon entypo-cog scnd-font-color"></span>Account Settings</a>
@@ -215,6 +277,7 @@
                             <p class="next-days-temperature">Tech Talk <span class="icon icon-clock" style="color: white;"></span></p> <!-- Upcoming -->
                         </a>
                     </li>
+                    <a class="add-event button" href="/places">BOOK VENUE</a>
                 </ul>
             </div>
             
@@ -233,12 +296,12 @@
         <!-- RIGHT-CONTAINER -->
         <div class="right-container container">
             <div class="join-newsletter block"> <!-- JOIN NEWSLETTER (RIGHT-CONTAINER) -->
-                <h2 class="titular">JOIN THE GROUP</h2>
+                <h2 class="titular">ADD A NEW POST</h2>
                 <div class="input-container">
                     <input type="text" placeholder="yourname@gmail.com" class="email text-input">
                     <div class="input-icon envelope-icon-newsletter"><span class="fontawesome-envelope scnd-font-color"></span></div>
                 </div>
-                <a class="subscribe button" href="#21">ADD MEMBERS</a>
+                <a class="subscribe button" href="/add">ADD POST</a>
             </div>
             <div class="account block"> <!-- ACCOUNT (RIGHT-CONTAINER) -->
                 <h2 class="titular">MEMBER DETAILS</h2>
@@ -262,10 +325,51 @@
                         <p><span class="fontawesome-user scnd-font-color" style="color: white;"></span> Anna Johnson</p>
                     </li>
                 </ul>
-                <a class="add-event button" href="#all-members">VIEW ALL MEMBERS</a>
+                <a class="add-event button" href="javascript:void(0)" id="addMemberBtn">ADD MEMBERS</a>
             </div>
+            <div id="addMemberModal" class="modal">
+                <div class="modal-content">
+                  <span class="close" id="closeModal">&times;</span>
+                  <form action="/register" method="post">
+                    <input class="border-2 rounded-md mt-2 block  w-full px-3 py-2" type="text" name="username" placeholder="Username" required>
+                    <input class="border-2 rounded-md mt-2 block  w-full px-3 py-2" type="email" name="email" placeholder="Email" required>
+                    <input class="border-2 rounded-md mt-2 block  w-full px-3 py-2" type="password" name="password" placeholder="Password" required>
+                    
+                    <input class="submit-button border-2 rounded-full mt-2 block w-full px-3 py-2" type="submit" value="Register">
+                  </form>
+                </div>
+              </div>
+              <script>
+                // Get modal and button elements
+                const modal = document.getElementById('addMemberModal');
+                const btn = document.getElementById('addMemberBtn');
+                const closeBtn = document.getElementById('closeModal');
             
+                // Open modal when button is clicked
+                btn.onclick = function () {
+                  modal.style.display = 'block';
+                };
             
+                // Close modal when 'X' is clicked
+                closeBtn.onclick = function () {
+                  modal.style.display = 'none';
+                };
+            
+                // Close modal if user clicks outside the modal
+                window.onclick = function (event) {
+                  if (event.target === modal) {
+                    modal.style.display = 'none';
+                  }
+                };
+            
+                // Form submission handling (reload on success)
+                document.querySelector('form').onsubmit = function () {
+                  setTimeout(() => {
+                    modal.style.display = 'none'; // Close the modal
+                    location.reload(); // Reload the page after form submission
+                  }, 500);
+                };
+              </script>
             <div class="calendar-day block"> <!-- CALENDAR DAY (RIGHT-CONTAINER) -->
                 <div class="arrow-btn-container">
                     <a class="arrow-btn left" href="#200"><span class="icon fontawesome-angle-left"></span></a>
@@ -274,7 +378,8 @@
                 </div>
                     <p class="the-day">03/12</p>
                     <h2 class="titular" style="margin-top: 10px;">ONGC DEBATE</h2>
-                    <a class="add-event button" href="#27">ADD EVENT</a>
+                    <a class="add-event button" href="/add">ADD EVENT</a>
+                    
             </div>
             <div class="calendar-month block"> <!-- CALENDAR MONTH (RIGHT-CONTAINER) -->
                 <div class="arrow-btn-container">
