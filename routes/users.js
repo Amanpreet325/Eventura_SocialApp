@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
   },
   bio: {
     type: String,
-    default: 'Doper',
+    
   },
   posts: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -28,6 +28,18 @@ const userSchema = mongoose.Schema({
     default: 'volunteer'
   },
   status: { type: String, default: 'pending' },
+  // year: String,
+  // stream: String,
+  club: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user', // reference to a user with role 'club'
+  },
+
+  // 🔸 If user is a club: members they have added
+  members: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user', // references to users with role 'volunteer'
+  }],
 });
 
 userSchema.plugin(plm);

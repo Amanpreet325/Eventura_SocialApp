@@ -25,10 +25,7 @@ const postSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'user',
   },
-  likes:{
-    type:Array,
-    default:[],
-  },
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
   status: { type: String, default: 'pending' },
   
 });

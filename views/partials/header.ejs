@@ -5,19 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<style>
+  .logo {
+    background-image: url('https://dl.geu.ac.in/uploads/image/KWqx6liP-geu-logo.webp'); /* <-- Update path as needed */
+  }
+  .header{
+
+  }
+</style>
 <body>
-  <% if(nav===true){ %>
-    <div class="w-full px-10 py-3 flex justify-between bg-zinc-800 text-white">
-      <div class="flex flex-col"><h3>DIGI</h3><h1><span class="px-2 py-1 bg-red-700 text-white rounded-lg">_dope</span></h1></div>
-      <div class="flex gap-10 items-center">
-        <a href="/profile">Profile</a>
-        <a href="/feed">Feed</a>
-        <a href="/add" class="px-3 py-2 bg-red-700 text-white rounded-lg">ADD POST</a>
-        <a href="/logout" class="px-3 py-2 bg-red-700 text-white rounded-lg">logout</a>
+ <% if(nav === true) { %>
+ <header class="w-full bg-zinc-900 text-gray-100 shadow-sm">
+
+    <div class="flex items-center justify-between px-10 py-3 border-b border-gray-300">
+      <!-- Left Links -->
+      <div class="flex items-center gap-6 text-sm">
+        <a href="#" class="hover:underline">About</a>
+        <a href="#" class="hover:underline">Alumni</a>
+        <a href="#" class="hover:underline">Student Area</a>
+      </div>
+
+      <!-- Center Logo -->
+      <div class="flex logo bg-center bg-no-repeat bg-contain w-48 h-16"></div>
+
+
+      <!-- Right Links -->
+      <div class="flex items-center gap-4 text-sm">
+        <a href="/feed" class="hover:underline">Notice & Event</a>
+        <a href="/profile" class="hover:underline">Profile</a>
+        <a href="#" class="hover:underline">Blog</a>
+        <a href="#" class="hover:underline">Contact</a>
+        <!-- Social Icons -->
+        <div class="flex items-center gap-2 ml-4 text-lg">
+          <i class="ri-facebook-line"></i>
+          <i class="ri-linkedin-line"></i>
+          <i class="ri-twitter-line"></i>
+          <i class="ri-youtube-line"></i>
+          <i class="ri-instagram-line"></i>
+        </div>
+        <a href="/apply" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Apply Now</a>
       </div>
     </div>
-  <% } %>
+
+    <!-- Lower Nav Links -->
+    <nav class="flex justify-center gap-8 py-2 text-sm font-medium">
+      <a href="#" class="hover:underline">Academics</a>
+      <a href="#" class="hover:underline">Admissions</a>
+      <a href="#" class="hover:underline">Placements</a>
+      <a href="#" class="hover:underline">Life at Graphic Era</a>
+      <a href="#" class="hover:underline">International</a>
+      <a href="#" class="hover:underline">Research</a>
+    </nav>
+  </header>
+<% } %>
+
   

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            background: #333;
+            border: 1px solid #ff0000;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #d10000;
+        }
+
+        .progress-container {
+            width: 100%;
+            background: #333;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            height: 20px;
+            width: 0%;
+            background: #ff0000;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Event Budget Calculator</h2>
+    
+    <div class="form-container">
+        <form id="budget-form"  action="/calculate-budget" method="POST">
+            <label>Number of Attendees:</label>
+            <input type="number" id="attendees" name="attendees" required>
+
+            <label>Food Cost Per Person:</label>
+            <input type="number" id="foodCost"  name="foodCost"  required>
+
+            <label>Decoration Cost:</label>
+            <input type="number" id="decorationCost" name="decorationCost"  required>
+
+            <label>Entertainment Cost:</label>
+            <input type="number" id="entertainmentCost"  name="entertainmentCost" required>
+
+            <label>Registration Fee Per Person:</label>
+            <input type="number" id="registrationFee" name="registrationFee">
+
+            <button type="submit">Calculate Budget</button>
+        </form>
+
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar">0%</div>
+        </div>
+    </div>
+
+    <!-- <script>
+        document.getElementById("budget-form").addEventListener("input", function() {
+            const attendees = parseInt(document.getElementById("attendees").value) || 0;
+            const foodCost = parseInt(document.getElementById("foodCost").value) || 0;
+            const decorationCost = parseInt(document.getElementById("decorationCost").value) || 0;
+            const entertainmentCost = parseInt(document.getElementById("entertainmentCost").value) || 0;
+            const registrationFee = parseInt(document.getElementById("registrationFee").value) || 0;
+
+            const foodTotal = attendees * foodCost;
+            const registrationTotal = attendees * registrationFee;
+            const totalBudget = foodTotal + decorationCost + entertainmentCost - registrationTotal;
+
+            const maxBudget = 100000;  // Assume max budget for visualization
+            const progressPercentage = Math.min((totalBudget / maxBudget) * 100, 100);
+
+            const progressBar = document.getElementById("progress-bar");
+            progressBar.style.width = progressPercentage + "%";
+            progressBar.textContent = Math.round(progressPercentage) + "%";
+        });
+
+        document.getElementById("budget-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Budget calculated! (Backend integration needed)");
+        });
+    </script> -->
+
+</body>
+</html>

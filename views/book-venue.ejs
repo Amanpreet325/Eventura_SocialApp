@@ -1,1 +1,68 @@
-<h1>Paaji book hogaya </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #6c63ff, #a6c1ff);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .confirmation-container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .confirmation-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .confirmation-container p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .thank-you {
+      font-size: 1rem;
+      color: #f5c35c;
+      margin-top: 20px;
+    }
+
+    .button {
+      background: #ff9e42;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: 0.3s ease-in-out;
+    }
+
+    .button:hover {
+      background: #ff7e10;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="confirmation-container">
+    <h1>Booking Confirmed</h1>
+    <p>Your venue booking has been successfully submitted and is waiting for approval.</p>
+    <p class="thank-you">Thank you for using Eventura!</p>
+    <a href="/admin/dashboard" class="button">Return to Home</a>
+  </div>
+</body>
+</html>
